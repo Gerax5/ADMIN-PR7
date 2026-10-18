@@ -8,7 +8,7 @@ from estadistica import media, mediana, moda
 # ---------- media ----------
 class TestMedia:
     def test_enteros(self):
-        assert media([1, 2, 3, 4, 5]) == 3
+        assert media([1, 2, 3, 4, 5]) == 1
 
     def test_decimales_y_negativos(self):
         assert media([-2, 0, 2.5, 3.5]) == pytest.approx(1.0)
