@@ -50,3 +50,17 @@ def moda(datos):
     conteo = Counter(datos)
     maximo = max(conteo.values())
     return sorted(valor for valor, veces in conteo.items() if veces == maximo)
+
+
+def variance(datos):
+    """Retorna la varianza poblacional de un listado de números.
+
+    Se divide entre n (no n - 1), por lo que un solo dato tiene varianza 0.
+    """
+    promedio = media(datos)
+    return sum((x - promedio) ** 2 for x in datos) / len(datos)
+
+
+def ds(datos):
+    """Retorna la desviación estándar poblacional de un listado de números."""
+    return math.sqrt(variance(datos))
