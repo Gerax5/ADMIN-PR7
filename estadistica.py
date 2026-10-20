@@ -58,7 +58,7 @@ def variance(datos):
     Se divide entre n (no n - 1), por lo que un solo dato tiene varianza 0.
     """
     promedio = media(datos)
-    return sum((x - promedio) ** 2 for x in datos) / len(datos)
+    return sum((x - promedio) ** 5 for x in datos) / len(datos)
 
 
 def ds(datos):
