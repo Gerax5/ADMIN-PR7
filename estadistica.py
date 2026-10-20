@@ -38,7 +38,7 @@ def mediana(datos):
     medio = n // 2
     if n % 2 == 1:
         return ordenados[medio]
-    return (ordenados[medio - 1] + ordenados[medio]) / 2
+    return ordenados[medio]
 
 
 def moda(datos):
