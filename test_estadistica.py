@@ -2,7 +2,7 @@ import math
 
 import pytest
 
-from estadistica import media, mediana, moda
+from estadistica import ds, media, mediana, moda, variance
 
 
 # ---------- media ----------
@@ -65,3 +65,47 @@ class TestModa:
     def test_booleanos_no_validos(self):
         with pytest.raises(TypeError):
             moda([True, False, True])
+
+
+# ---------- variance ----------
+class TestVariance:
+    def test_enteros(self):
+        assert variance([2, 4, 4, 4, 5, 5, 7, 9]) == pytest.approx(4.0)
+
+    def test_decimales_y_negativos(self):
+        assert variance([-1.5, 0.5, 2.5]) == pytest.approx(8 / 3)
+
+    def test_un_solo_dato(self):
+        assert variance([7]) == 0
+
+    def test_todos_iguales(self):
+        assert variance([3, 3, 3]) == 0
+
+    def test_lista_vacia(self):
+        with pytest.raises(ValueError):
+            variance([])
+
+    def test_valor_no_numerico(self):
+        with pytest.raises(TypeError):
+            variance([1, None, 3])
+
+
+# ---------- ds ----------
+class TestDs:
+    def test_enteros(self):
+        assert ds([2, 4, 4, 4, 5, 5, 7, 9]) == pytest.approx(2.0)
+
+    def test_es_raiz_de_la_varianza(self):
+        datos = [1.2, 3.4, 5.6, 7.8]
+        assert ds(datos) == pytest.approx(math.sqrt(variance(datos)))
+
+    def test_un_solo_dato(self):
+        assert ds([7]) == 0
+
+    def test_lista_vacia(self):
+        with pytest.raises(ValueError):
+            ds([])
+
+    def test_contiene_nan(self):
+        with pytest.raises(ValueError):
+            ds([1, float("nan"), 3])
